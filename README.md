@@ -7,7 +7,7 @@ Este proyecto es una aplicación de escritorio desarrollada en Python con Custom
 - Registro de productos y servicios
 - Generación de cotizaciones profesionales en PDF
 - Creación de órdenes de compra
-- Exportación de datos a archivos CSV
+- Creación de cotizaciones
 - Soporte para múltiples productos en una sola operación
 - Compatible con sistemas Windows
 
@@ -15,13 +15,13 @@ Este proyecto es una aplicación de escritorio desarrollada en Python con Custom
 - Python 3
 - CustomTkinter
 - Pandas
-- fpdf / ReportLab (para generación de PDF)
+- ReportLab (para generación de PDF)
 - PIL (para manejo de imágenes)
 - os, json, csv
 
 ## 📦 Instalación y uso
 
-1. Descarga el archivo ZIP desde la pestaña [Releases]([https://github.com/TU_USUARIO/ordenes_cotizaciones/release](https://github.com/Migui173/Creacion_de_Cotizacion_Ordenes___RH/releases)s)
+1. Descarga el archivo ZIP desde la pestaña [Releases]((https://github.com/Migui173/Creacion_de_Cotizacion_Ordenes___RH/releases))
 2. Extrae el contenido
 3. Ejecuta `ventana_eje_cot_ord.exe` (si está compilado) o `ventana_eje_cot_ord.py` si tienes Python instalado.
 4. Asegúrate de tener las dependencias instaladas si lo corres desde código fuente:
