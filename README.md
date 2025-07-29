@@ -29,6 +29,7 @@ Este proyecto es una aplicación de escritorio desarrollada en Python con Custom
 ```bash
 pip install -r requirements.txt
 ```
+5. (Opcional) Para un mejor ajuste tener los accesos directos del `ventana_eje_cot_ord.exe` y de las carpetas `cotizaciones` y `ordenes`
 
 ## 📁 Estructura del Proyecto
 
@@ -36,10 +37,12 @@ pip install -r requirements.txt
 Creacion_de_Cotizacion_Ordenes___RH/
 ├── ventana_eje_cot_ord.py      # Interfaz principal de usuario
 ├── func_ctk.py                 # Funciones auxiliares y lógicas de producto
+├── gen_pdf.py                  # Función para la generación de pdfs
 ├── data/                       # Carpeta donde se almacenan los datos JSON
-├── assets/                     # Imágenes e íconos
+├── imgs/                       # Imágenes e íconos
 ├── dist/                       # Carpeta para el ejecutable o ZIP compilado
 ├── requirements.txt            # Lista de dependencias
+├── pc.txt                      # Número de pc donde va ser instaldo el programa
 └── README.md                   # Este archivo
 ```
 
