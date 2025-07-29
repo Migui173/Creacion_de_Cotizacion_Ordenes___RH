@@ -21,7 +21,7 @@ Este proyecto es una aplicación de escritorio desarrollada en Python con Custom
 
 ## 📦 Instalación y uso
 
-1. Descarga el archivo ZIP desde la pestaña [Releases](https://github.com/TU_USUARIO/ordenes_cotizaciones/releases)
+1. Descarga el archivo ZIP desde la pestaña [Releases]([https://github.com/TU_USUARIO/ordenes_cotizaciones/release](https://github.com/Migui173/Creacion_de_Cotizacion_Ordenes___RH/releases)s)
 2. Extrae el contenido
 3. Ejecuta `ventana_eje_cot_ord.exe` (si está compilado) o `ventana_eje_cot_ord.py` si tienes Python instalado.
 4. Asegúrate de tener las dependencias instaladas si lo corres desde código fuente:
