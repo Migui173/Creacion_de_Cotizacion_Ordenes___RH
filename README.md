@@ -29,7 +29,7 @@ Este proyecto es una aplicación de escritorio desarrollada en Python con Custom
 ```bash
 pip install -r requirements.txt
 ```
-5. (Opcional) Para un mejor ajuste tener los accesos directos del `ventana_eje_cot_ord.exe` y de las carpetas `cotizaciones` y `ordenes`
+5. (Opcional) Para un mejor ajuste tener los accesos directos en el escritorio del `ventana_eje_cot_ord.exe` y de las carpetas `cotizaciones` y `ordenes`
 
 ## 📁 Estructura del Proyecto
 
