@@ -38,7 +38,7 @@ Creacion_de_Cotizacion_Ordenes___RH/
 ├── ventana_eje_cot_ord.py      # Interfaz principal de usuario
 ├── func_ctk.py                 # Funciones auxiliares y lógicas de producto
 ├── gen_pdf.py                  # Función para la generación de pdfs
-├── data/                       # Carpeta donde se almacenan los datos JSON
+├── data/                       # Carpeta donde se almacenan los datos JSON y CSV
 ├── imgs/                       # Imágenes e íconos
 ├── dist/                       # Carpeta para el ejecutable o ZIP compilado
 ├── requirements.txt            # Lista de dependencias
@@ -53,3 +53,6 @@ Creacion_de_Cotizacion_Ordenes___RH/
 
 ## 📃 Licencia
 Este proyecto está bajo la Licencia MIT.
+
+###🧑 Creador del programa
+The Miguelin Projects
