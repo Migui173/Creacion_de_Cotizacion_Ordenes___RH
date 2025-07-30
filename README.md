@@ -12,7 +12,7 @@ Este proyecto es una aplicación de escritorio desarrollada en Python con Custom
 - Compatible con sistemas Windows
 
 ## 🚀 Tecnologías utilizadas
-- Python 3
+- Python 3.13
 - CustomTkinter
 - Pandas
 - ReportLab (para generación de PDF)
