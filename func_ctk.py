@@ -438,7 +438,7 @@ def registar_contenido(dict_prin, dataset):
         save_json_ord_data(contenido)
     return id_unico
 
-def boton_crear_pdf(doc,ruc,cliente,placa,moneda, ven_cre, error_label,scrool,dataset,lmonto,boton_vol):
+def boton_crear_pdf(doc,ruc,cliente,placa,moneda, ven_cre, error_label,scrool,dataset,lmonto,boton_vol,lsigno):
     tabla = pd.read_csv("data/productos_temp.csv")
     if not doc.get() or moneda.get() == 0 and not ruc.get() =="":
         CTkLabel(ven_cre, text="Seleccione tipo de documento y moneda", text_color="red").place(x=350, y=600)
@@ -478,6 +478,7 @@ def boton_crear_pdf(doc,ruc,cliente,placa,moneda, ven_cre, error_label,scrool,da
     verificar_datos_cliente(doc,moneda,ruc,cliente,placa,boton_vol)
     generar_pdf(id_usar, tabla, estado_guia)
     ven_cre.after(1000, lambda: dect_abrir_documento(id_usar))
+    lsigno.configure(text="N")
 def restablecer_datos_cliente(tipo_doc_var, ruc_entry, cliente_entry, moneda_var, placa_entry, error_label):
     """
     Restablece los valores de los campos de datos del cliente a su estado inicial.

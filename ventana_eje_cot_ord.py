@@ -29,7 +29,7 @@ def cerrar():
 # BOTONES PRINCIPALES
 
 
-boton_crear = CTkButton(master=ventana_creator, text="Crear", width=160, font=fuente_botton, command=lambda:boton_crear_pdf(tipo_doc,ruc,cliente,placa,moneda, ventana_creator,error_label, scroll_tabla_productos,dataset,lmonto,boton_volver) )
+boton_crear = CTkButton(master=ventana_creator, text="Crear", width=160, font=fuente_botton, command=lambda:boton_crear_pdf(tipo_doc,ruc,cliente,placa,moneda, ventana_creator,error_label, scroll_tabla_productos,dataset,lmonto,boton_volver,lsigno) )
 boton_volver = CTkButton(master=ventana_creator, text="Cerrar", width=160, font=fuente_botton, command=cerrar,state="normal")
 lcopy = CTkLabel(ventana_creator, text="© Copyright. 2025 El Miguelin Projects - Repuestos Huanca | Derechos Reservados", font=("Verdana", 8))
 
