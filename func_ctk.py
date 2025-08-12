@@ -362,7 +362,8 @@ def subtotal_igv_total(dataset):
         total += i
     igv = round((total*18/100),2)
     subtotal = round(total - igv,2)
-    return subtotal, igv, total
+    total_ = round(subtotal + igv,2)
+    return subtotal, igv, total_
 def open_json_cot_data():
     if os.path.exists("data/cot_data.json"):
         with open("data/cot_data.json","r") as cot_data:
