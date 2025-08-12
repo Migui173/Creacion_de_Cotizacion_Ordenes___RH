@@ -22,10 +22,12 @@ ventana_creator.iconbitmap("imgs/favicon.ico")
 # FRAMES
 datos_cliente = CTkFrame(master=ventana_creator, width=960, height=215)
 datos_producto = CTkFrame(master=ventana_creator, width=345, height=357)
+datos_producto.pack_propagate(False)
 sec_productos = CTkFrame(master=ventana_creator, width=595, height=357)
 
 def cerrar():
     ventana_creator.destroy()
+
 # BOTONES PRINCIPALES
 
 
@@ -88,9 +90,9 @@ mostrar_productos(scroll_tabla_productos)
 
 ltotal = CTkLabel(sec_productos, text="TOTAL : ", font=fuente_labels)
 ltotal.place(x=400, y=320)
-lsigno = CTkLabel(sec_productos, font=fuente_labels)
+lsigno = CTkLabel(sec_productos, text="N",font=fuente_labels)
 lsigno.place(x=473, y=320)
-lmonto = CTkLabel(sec_productos, text="", font=fuente_labels)
+lmonto = CTkLabel(sec_productos, text="0.0", font=fuente_labels)
 lmonto.place(x=500, y=320)
 
 
@@ -123,10 +125,12 @@ dolares.place(x=255, y=119)
 cliente.place(x=142, y=86)
 placa.place(x=80, y=152)
 
+
 # INPUTS DATOS DEL PRODUCTO
 cant = CTkEntry(datos_producto, font=fuente_labels)
 cod = CTkEntry(datos_producto, font=fuente_labels)
 marca = CTkEntry(datos_producto, font=fuente_labels)
+
 descrip = CTkEntry(datos_producto, font=fuente_labels)
 prec_uni = CTkEntry(datos_producto, font=fuente_labels)
 
@@ -137,14 +141,20 @@ marca.place(x=x_inputs+18, y=179-21)
 descrip.place(x=x_inputs+33, y=232-21)
 prec_uni.place(x=x_inputs+50, y=285-21)
 
+
+
+
 # BOTONES PRODUCTOS
-boton_mas = CTkButton(datos_producto, width=35, height=35, text="+", font=fuente_botton)
-boton_mmenos = CTkButton(datos_producto, width=35, height=35, text="-", font=fuente_botton, command=lambda: ven_eliminar_fila(ventana_creator, dataset, scroll_tabla_productos, lmonto))
+boton_mas = CTkButton(datos_producto, width=35, height=35, text="+", font=fuente_botton,fg_color="green4", hover_color="chartreuse4")
+boton_mmenos = CTkButton(datos_producto, width=35, height=35, text="-", fg_color="red4", hover_color="brown4",font=fuente_botton, command=lambda: ven_eliminar_fila(ventana_creator, dataset, scroll_tabla_productos, lmonto))
 boton_mod = CTkButton(datos_producto, width=195, height=35, text="Modificar", font=fuente_botton, command=lambda: modificar_datos(ventana_creator, dataset, scroll_tabla_productos, lmonto))
 
 boton_mas.place(x=20, y=302)
 boton_mmenos.place(x=75, y=302)
 boton_mod.place(x=130, y=302)
 boton_mas.configure(command=lambda: agregar_producto(cant, cod, marca, descrip, prec_uni, scroll_tabla_productos, lmonto))
+
+frame_sugerencias = crear_frame_sugerencias(datos_producto)
+marca.bind("<KeyRelease>", lambda event: filtrar_marcas(marca, frame_sugerencias))
 
 ventana_creator.mainloop()

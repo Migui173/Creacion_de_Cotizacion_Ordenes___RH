@@ -546,6 +546,62 @@ def verificar_datos_cliente(tipo_doc,moneda,ruc,cliente,placa,boton_vol):
                    placa.get().strip() != "")
     boton_vol.configure(state="disabled" if tiene_datos else "normal")
 
+# Cargar marcas desde CSV
+marcas_df = pd.read_csv('data/marcas.csv')
+lista_marcas = marcas_df["MARCA"].dropna().unique().tolist()
+
+from customtkinter import *
+
+def seleccionar_marca(marca, entrada, frame_sugerencias):
+    entrada.delete(0, "end")
+    entrada.insert(0, marca)
+    frame_sugerencias.place_forget()  # Ocultar sugerencias
+
+def crear_frame_sugerencias(parent):
+    frame = CTkScrollableFrame(parent, width=200, height=0)  # altura se ajustará después
+    frame.place_forget()
+    return frame
+
+def filtrar_marcas(entrada, frame_sugerencias):
+    texto = entrada.get().lower()
+
+    # Limpiar sugerencias anteriores
+    for widget in frame_sugerencias.winfo_children():
+        widget.destroy()
+
+    if texto == "":
+        frame_sugerencias.place_forget()
+        return
+
+    # Filtrar solo las marcas que comienzan con el texto escrito
+    coincidencias = [m for m in lista_marcas if m.lower().startswith(texto)]
+
+    if coincidencias:
+        # Posición del Entry en pantalla
+        x = entrada.winfo_x() - 13
+        y = entrada.winfo_y() + entrada.winfo_height() -20
+
+        # Altura dinámica → cada botón ~27px, máx. 6 visibles
+        altura = min(len(coincidencias), 6) * 27
+        frame_sugerencias.configure(height=altura)
+
+        frame_sugerencias.place(x=x, y=y)
+
+        for m in coincidencias:
+            btn = CTkButton(
+                frame_sugerencias,
+                text=m,
+                width=180,
+                height=25,
+                fg_color="transparent",
+                text_color=None,  # Auto según tema
+                hover_color=("lightgray", "#2a2a2a"),
+                anchor="w",
+                command=lambda marca_texto=m: seleccionar_marca(marca_texto, entrada, frame_sugerencias)
+            )
+            btn.pack(fill="x", padx=5, pady=1)
+    else:
+        frame_sugerencias.place_forget()
 
 
 
