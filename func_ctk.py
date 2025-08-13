@@ -16,7 +16,7 @@ def cargar_productos():
         df = pd.read_csv("data/productos_temp.csv")
         print(f"CSV cargado: {df.to_string()}")  # Depuración
     except FileNotFoundError:
-        df = pd.DataFrame(columns=["cant", "cod", "marca", "descrip", "prec_uni", "precio_total"])
+        df = pd.DataFrame(columns=["id","cant", "cod", "marca", "descrip", "prec_uni", "precio_total"])
         print("CSV no encontrado, creado DataFrame vacío")
     return df
 
@@ -28,9 +28,9 @@ def mostrar_productos(scroll_frame):
         df = cargar_productos()
         encabezado = CTkFrame(scroll_frame)
         encabezado.pack(fill="x", pady=(0, 5))
-        mis_coloumnas = ["CANT.", "COD.", "MARCA", "DESCRIP.", "PREC. UNIT.", "PREC. TOTAL"]
+        mis_coloumnas = ["ID","CANT.", "COD.", "MARCA", "DESCRIP.", "P. UNIT.", "P. TOTAL"]
         for col in mis_coloumnas:
-            CTkLabel(encabezado, text=col, width=100, anchor="w", font=("Arial", 11)).pack(side="left")
+            CTkLabel(encabezado, text=col, width=85, anchor="w", font=("Arial", 12)).pack(side="left")
 
         for _, row in df.iterrows():
             fila = CTkFrame(scroll_frame)
@@ -41,7 +41,7 @@ def mostrar_productos(scroll_frame):
                 texto = str(valor)
                 if len(texto) > 10:
                     texto = texto[:5] + "..."
-                CTkLabel(fila, text=texto, width=100, anchor="w", font=("Arial", 11)).pack(side="left")
+                CTkLabel(fila, text=texto, width=85, anchor="w", font=("Arial", 11)).pack(side="left")
     except Exception as e:
         CTkLabel(scroll_frame, text=f"Error al cargar productos: {str(e)}", text_color="red").pack()
 
@@ -64,7 +64,10 @@ def agregar_producto(cant, cod, marca, descrip, prec_uni, scroll, lmonto):
         CTkLabel(scroll, text="Cantidad y Precio deben ser numéricos", text_color="red").pack()
         return
 
+    nuevo_id = len(dataset) + 1
+
     producto = {
+        "id": nuevo_id,
         "cant": cantidad,
         "cod": codigo,
         "marca": marca_,
@@ -579,14 +582,14 @@ def filtrar_marcas(entrada, frame_sugerencias):
 
     if coincidencias:
         # Posición del Entry en pantalla
-        x = entrada.winfo_x() - 13
-        y = entrada.winfo_y() + entrada.winfo_height() -20
+        #x = entrada.winfo_x() - 13
+        #y = entrada.winfo_y() + entrada.winfo_height() -20
 
         # Altura dinámica → cada botón ~27px, máx. 6 visibles
         altura = min(len(coincidencias), 6) * 27
         frame_sugerencias.configure(height=altura)
 
-        frame_sugerencias.place(x=x, y=y)
+        frame_sugerencias.place(in_=entrada, relx=0, rely=1, y=2)
 
         for m in coincidencias:
             btn = CTkButton(
