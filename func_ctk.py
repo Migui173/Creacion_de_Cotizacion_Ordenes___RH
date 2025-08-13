@@ -598,7 +598,7 @@ def filtrar_marcas(entrada, frame_sugerencias):
                 width=180,
                 height=25,
                 fg_color="transparent",
-                text_color=None,  # Auto según tema
+                text_color="black",  # Auto según tema
                 hover_color=("lightgray", "#2a2a2a"),
                 anchor="w",
                 command=lambda marca_texto=m: seleccionar_marca(marca_texto, entrada, frame_sugerencias)
