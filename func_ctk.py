@@ -3,6 +3,7 @@ import pandas as pd
 from datetime import datetime
 import json
 import os
+import numpy as np
 from PIL import Image
 from gen_pdf import generar_pdf
 import platform
@@ -104,7 +105,8 @@ def actualizar_monto(dataset, lmonto):
     suma = 0
     for i in monto_total:
         suma += i
-    lmonto.configure(text=str(round(suma, 2)))
+    monto = round(suma,2)
+    lmonto.configure(text=f"{monto:.2f}")
 
 def bloquear_ventana(vent, vent_pri):
     vent.resizable(width=False, height=False)
@@ -151,6 +153,7 @@ def ven_eliminar_fila(ven_cre, dataset, scroll, lmonto):
                 dataset.reset_index(drop=True, inplace=True)
                 dataset.to_csv("data/productos_temp.csv", index=False)
                 CTkLabel(ventana_eliminar, text="FILA ELIMINADA", text_color="green").place(x=130.5, y=100)
+                resetear_ids()
                 mostrar_productos(scroll)
                 actualizar_monto(dataset, lmonto)
         except ValueError:
@@ -159,6 +162,12 @@ def ven_eliminar_fila(ven_cre, dataset, scroll, lmonto):
     CTkButton(ventana_eliminar, text="Eliminar", font=("Arial", 14), command=funcion_eliminar_fila, width=130).place(
         x=110, y=130)
 
+
+def resetear_ids():
+    dataset1 = pd.read_csv("data/productos_temp.csv")
+    nuevos_ids = np.arange(1, len(dataset1) + 1)
+    dataset1["id"] = nuevos_ids
+    dataset1.to_csv("data/productos_temp.csv", index=False)
 
 def modificar_datos(ven_cre, dataset, scroll, lmonto):
     # Recargar el CSV para asegurar que dataset esté actualizado
@@ -195,13 +204,13 @@ def modificar_datos(ven_cre, dataset, scroll, lmonto):
                 vent_mod.destroy()
                 vent_datos = CTkToplevel(ven_cre)
                 vent_datos.title(f"Datos del producto {id_mod + 1}")
-                vent_datos.geometry("400x400")
+                vent_datos.geometry("400x300")
                 vent_datos.iconbitmap("imgs/favicon.ico")
                 bloquear_ventana(vent_datos, ven_cre)
 
                 fila = dataset.loc[id_mod]
                 # Excluir precio_total de los campos editables
-                campos_editables = [campo for campo in dataset.columns if campo != "precio_total"]
+                campos_editables = [campo for campo in dataset.columns if campo != "precio_total" and campo!= "id"]
                 entradas = {}
                 for i, campo in enumerate(campos_editables):
                     CTkLabel(vent_datos, text=campo, font=("Arial", 13)).place(x=50, y=30 + i * 40)
@@ -554,7 +563,6 @@ def verificar_datos_cliente(tipo_doc,moneda,ruc,cliente,placa,boton_vol):
 marcas_df = pd.read_csv('data/marcas.csv')
 lista_marcas = marcas_df["MARCA"].dropna().unique().tolist()
 
-from customtkinter import *
 
 def seleccionar_marca(marca, entrada, frame_sugerencias):
     entrada.delete(0, "end")

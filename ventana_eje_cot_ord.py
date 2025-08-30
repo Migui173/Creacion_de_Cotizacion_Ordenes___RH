@@ -127,12 +127,12 @@ placa.place(x=80, y=152)
 
 
 # INPUTS DATOS DEL PRODUCTO
-cant = CTkEntry(datos_producto, font=fuente_labels)
-cod = CTkEntry(datos_producto, font=fuente_labels)
-marca = CTkEntry(datos_producto, font=fuente_labels)
+cant = CTkEntry(datos_producto, font=fuente_labels,width=240)
+cod = CTkEntry(datos_producto, font=fuente_labels,width=245)
+marca = CTkEntry(datos_producto, font=fuente_labels, width=230)
 
-descrip = CTkEntry(datos_producto, font=fuente_labels)
-prec_uni = CTkEntry(datos_producto, font=fuente_labels)
+descrip = CTkEntry(datos_producto, font=fuente_labels, width=216)
+prec_uni = CTkEntry(datos_producto, font=fuente_labels, width=200)
 
 x_inputs = 70
 cant.place(x=x_inputs+5, y=73-21)
@@ -158,3 +158,5 @@ frame_sugerencias = crear_frame_sugerencias(datos_producto)
 marca.bind("<KeyRelease>", lambda event: filtrar_marcas(marca, frame_sugerencias))
 
 ventana_creator.mainloop()
+
+#pyinstaller --onefile --noconsole --icon=imgs/favicon.ico ventana_eje_cot_ord.py

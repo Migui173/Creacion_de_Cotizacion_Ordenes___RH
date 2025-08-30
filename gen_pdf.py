@@ -80,6 +80,7 @@ def generar_pdf(id_usar, dataset, dict_pri):
     else:
         pdf = canvas.Canvas(f"ordenes/{id_usar}.pdf", pagesize=A4)
     width, height = A4
+    pdf.setTitle(id_usar)
 
     # --- fuentes ---
     pdfmetrics.registerFont(TTFont("Menbere-Thin", "Fonts/Menbere-Thin.ttf"))
@@ -148,6 +149,9 @@ def generar_pdf(id_usar, dataset, dict_pri):
     for i in range(1, len(produ)):
         produ[i][4] = Paragraph(str(produ[i][4]), estilo_desc)
 
+    for i in range(1, len(produ)):
+        produ[i][5] = f"{produ[i][5]:.2f}"
+        produ[i][6] = f"{produ[i][6]:.2f}"
     y_inicio_tabla = height - 8.2 * cm
     tabla = Table(produ, colWidths=[1.3*cm,1.3*cm, 2*cm,3.5*cm, 6*cm, 2.1*cm, 2.1*cm])
     tabla.setStyle(estilo)
@@ -157,9 +161,9 @@ def generar_pdf(id_usar, dataset, dict_pri):
 
     # --- totales ---
     datos_totales_v2 = [
-        ['', '', '', "", '', 'Subtotal', f'{dict_pri["denominacion"]}{dict_pri["subtotal"]}'],
-        ['', '', '', '', "", 'IGV', f'{dict_pri["denominacion"]}{dict_pri["igv"]}'],
-        ['', '', '', '', "",'Total', f'{dict_pri["denominacion"]}{dict_pri["total"]}']
+        ['', '', '', "", '', 'Subtotal', f'{dict_pri["denominacion"]}{dict_pri["subtotal"]:.2f}'],
+        ['', '', '', '', "", 'IGV', f'{dict_pri["denominacion"]}{dict_pri["igv"]:.2f}'],
+        ['', '', '', '', "",'Total', f'{dict_pri["denominacion"]}{dict_pri["total"]:.2f}']
     ]
     tabla_totales = Table(datos_totales_v2, colWidths=[1.3*cm,1.3 * cm, 2 * cm, 3.5 * cm, 6 * cm, 2.1 * cm, 2.1 * cm])
     #tabla_totales = Table(datos_totales_v2, colWidths=[1.3*cm, 2*cm, 3.5*cm, 4.5*cm, 2.3*cm, 2.3*cm])
